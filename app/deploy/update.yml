@@ -1,0 +1,16 @@
+
+---
+- hosts: web
+  remote_user: george
+  tasks:
+    - name: Pull new image
+      shell: docker pull registry.jorgeadolfo.com/jarvis-dash:latest
+
+    - name: Stop 
+      shell: cd /opt/g3org3/jarvis-dash && docker-compose stop && docker-compose rm -f
+      ignore_errors: yes
+
+    - name: Start 
+      shell: cd /opt/g3org3/jarvis-dash && docker-compose up -d
+      ignore_errors: yes
+
